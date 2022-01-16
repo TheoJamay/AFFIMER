@@ -105,13 +105,13 @@ if __name__ == '__main__':
     Le fichier best_boucle_NS1.txt contient les séquences consécutive (+/- 5) d'une taille sup à 4 acides aminés identifier dans 
     le complexe d'origine des binding sites
     """
-    with open("NS1/bs_13_NS1.txt","r") as bs_file,  open("NS1/best_boucle_NS1.txt","a") as out_file :
+    with open("NS1_5GS6/dscore_sup_13.txt","r") as bs_file,  open("NS1_5GS6/best_boucle.txt","a") as out_file :
         for line in bs_file : 
             file = "{}.pdb".format(line[:6])
             antigene = line[6] #chaîne antigène à sélectionner
             anticorps = line[8] #chaîne anticorps (lourde ou lègère) à sélectionner
             parser = PDBParser()
-            structure = parser.get_structure(file[:-4], "NS1/pdb_sel_NS1/"+file) #structure complexe entier
+            structure = parser.get_structure(file[:-4], "pdb_files/"+file) #structure complexe entier
             list_chain = [antigene,anticorps] # On souhaite conserver uniquement ces 2 chaîne d'intéret sur tout le complexe
             pdb_chain_file = "target_{}.pdb".format(file[:-4])
             io_w_no_h = PDBIO()
